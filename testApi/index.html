@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>NHDstyle</title>
+    <link rel="shortcut icon" href="../images/logo/logo.png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
+      integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/CRUD_Product.js"></script>
+    <!-- <script src="../js/CRUD_Customer.js"></script> -->
+  </head>
+
+  <body>
+    <header>
+      <div class="col-md-12" style="background-color: rgb(206, 206, 206)">
+        <div class="container top">
+          <div class="col-md-6 float-left">CSKH: 0355 627 835</div>
+          <div class="col-md-6" id="top-icon">
+            <a href="#"><i class="fab fa-facebook-square"></i></a>
+            <a href="#"><i class="fab fa-facebook-messenger"></i></a>
+            <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar">
+        <div class="container">
+          <div class="col-md-2 text-center">
+            <a href="../html/index.html">
+              <img
+                src="../images/logo/logo.png"
+                alt="LOGO"
+                class="img-fluid w-90 p-2"
+              />
+            </a>
+          </div>
+
+          <div class="search col-md-5">
+            <input
+              id="search-bar"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="button" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="col-md item text-center" id="control-accout">
+            <button>
+              <i class="fas fa-clipboard-list fa-fw"></i>Theo dõi đơn hàng
+            </button>
+            <button
+              onclick="callFormSignIn()"
+              data-toggle="modal"
+              data-target="#loginModal"
+            >
+              <i class="fa fa-user fa-fw" aria-hidden="true"></i>Đăng nhập
+            </button>
+            <button
+              onclick="callFormSignUp()"
+              data-toggle="modal"
+              data-target="#signUpModal"
+            >
+              <i class="fa fa-key fa-fw"></i> Đăng ký
+            </button>
+          </div>
+          <div id="form-sign-in"></div>
+          <div id="form-sign-up"></div>
+        </div>
+      </div>
+
+      <nav class="container navbar navbar-expand-md navi" id="headnav">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa fa-bars" aria-hidden="true"></i>Danh mục sản phẩm
+            </a>
+            <div class="dropdown-menu drop" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Nữ</a>
+              <a class="dropdown-item" href="#">Nam</a>
+              <a class="dropdown-item" href="#">Đồ đôi</a>
+              <a class="dropdown-item" href="#">Thời trang thu-đông</a>
+            </div>
+          </div>
+
+          <div class="navbar-nav main-nav" id="my-main-nav">
+            <button class="nav-item">
+              <a class="nav-link" href="../html/index.html"
+                >Trang chủ <span class="sr-only">(current)</span></a
+              >
+            </button>
+            <button class="nav-item">
+              <a class="nav-link" href="../html/intro.html">Giới thiệu</a>
+            </button>
+            <button class="nav-item">
+              <a class="nav-link" href="../html/ServicePage.html">Dịch vụ</a>
+            </button>
+            <button class="nav-item">
+              <a class="nav-link" href="../html/about.html">Liên hệ</a>
+            </button>
+
+            <button class="nav-item option-cart">
+              <div class="">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>Giỏ hàng
+                <span class="cart_no" id="cart_no">0</span>
+              </div>
+              <div
+                class="dropdown-menu option-cart-item"
+                aria-labelledby="navbarDropdown"
+              >
+                <ul class="col-12 col-md-12">
+                  <li id="shopping-cart">
+                    <div class="cart-item">
+                      <div class="image">
+                        <img
+                          src="https://fmstyle.com.vn/images/anhnho/787290_1787551762__MG_1962.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="item-description">
+                        <p class="name">Vay co V nhun duoi ca VU1511A</p>
+                        <p>
+                          Size: <span class="light-red">L</span><br />Số lượng:
+                          <span class="light-red">01</span>
+                        </p>
+                      </div>
+                      <div class="right">
+                        <p class="price">130.000đ</p>
+                        <i class="fa fa-times remove" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li style="border: none">
+                    <div class="row text-left col-6 col-md-6">
+                      <div class="col-6 col-md-6">Tổng</div>
+                      <div class="col-6 col-md-6" id="total">130.000đ</div>
+                    </div>
+                    <div class="btn btn-outline-danger">Thanh toán</div>
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!-- <div id="nav-bar-repon"></div> -->
+      </nav>
+    </header>
+    <div class="container">
+      <h3>Admin</h3>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a
+            class="nav-item nav-link active"
+            id="nav-product-tab"
+            data-toggle="tab"
+            href="#nav-product"
+            role="tab"
+            aria-controls="nav-product"
+            aria-selected="true"
+            >Quản lý sản phẩm</a
+          >
+          <a
+            class="nav-item nav-link"
+            id="nav-order-tab"
+            data-toggle="tab"
+            href="#nav-customer"
+            role="tab"
+            aria-controls="nav-customer"
+            aria-selected="false"
+            >Quản lý khách hàng</a
+          >
+          <a
+            class="nav-item nav-link"
+            id="nav-order-tab"
+            data-toggle="tab"
+            href="#nav-order"
+            role="tab"
+            aria-controls="nav-order"
+            aria-selected="false"
+            >Quản lý đơn hàng</a
+          >
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <!-- qlsp -->
+        <div
+          class="tab-pane fade show active"
+          id="nav-product"
+          role="tabpanel"
+          aria-labelledby="nav-product-tab"
+        >
+          <div id="layoutSidenav_content">
+            <button
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              <i class="fas fa-plus mr-2"></i>Thêm mới
+            </button>
+
+            <table class="table">
+              <thead class="thead-light text-center">
+                <tr>
+                  <th>ID</th>
+                  <th>Tên</th>
+                  <th>Ảnh</th>
+                  <th>Giá</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody class="text-center" id="product_admin"></tbody>
+            </table>
+          </div>
+
+          <!-- Modal addProduct-->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="addProductModal"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addProductModal">
+                    Thêm sản phẩm
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form class="form-row" method="post">
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        placeholder="Tên"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="img1"
+                        placeholder="Ảnh"
+                      />
+                    </div>
+
+                    <div class="col-12 mt-3">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="price"
+                        placeholder="Giá"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      Tags<br />
+                      <input
+                        type="radio"
+                        id="tag1"
+                        name="people"
+                        value="Male"
+                      />
+                      <label for="tag1">Đồ nam</label>
+
+                      <input
+                        type="radio"
+                        id="tag2"
+                        name="people"
+                        value="Female"
+                      />
+                      <label for="tag2">Đồ nữ</label>
+
+                      <input
+                        type="radio"
+                        id="tag3"
+                        name="people"
+                        value="Couple"
+                      />
+                      <label for="tag3">Đồ đôi</label>
+
+                      <input
+                        type="checkbox"
+                        id="tag4"
+                        name="season"
+                        value="Fall & Winter"
+                      />
+                      <label for="tag4">Thu-Đông</label>
+                    </div>
+                  </form>
+                  <button class="btn btn-outline-danger mt-3" id="add_Product">
+                    Thêm
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Thoát
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal updateProduct-->
+          <div
+            class="modal fade"
+            id="updateProduct"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="updateProductLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="updateProductLabel">
+                    Chỉnh sửa thông tin sản phẩm
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="close"
+                  >
+                    <span aria-hidden="true">&times; </span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form actio n="" class="form-row">
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="idd"
+                        disabled
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="named"
+                        placeholder="Tên"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="img1d"
+                        placeholder="Ảnh 1"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="img2d"
+                        placeholder="Ảnh 2"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="img3d"
+                        placeholder="Ảnh 3"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="priced"
+                        placeholder="Giá"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      Tags<br />
+                      <input
+                        type="radio"
+                        id="tag1d"
+                        name="people"
+                        value="Male"
+                      />
+                      <label for="tag1d">Đồ nam</label>
+
+                      <input
+                        type="radio"
+                        id="tag2d"
+                        name="people"
+                        value="Female"
+                      />
+                      <label for="tag2d">Đồ nữ</label>
+
+                      <input
+                        type="radio"
+                        id="tag3d"
+                        name="people"
+                        value="Couple"
+                      />
+                      <label for="tag3d">Đồ đôi</label>
+
+                      <input
+                        type="checkbox"
+                        id="tag4d"
+                        name="season"
+                        value="Fall & Winter"
+                      />
+                      <label for="tag4d">Thu-Đông</label>
+                    </div>
+
+                    <div class="col-3 mt-3" id="summitUpdate"></div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                    onclick="reset()"
+                  >
+                    Thoát
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- qlkh -->
+        <div
+          class="tab-pane fade"
+          id="nav-customer"
+          role="tabpanel"
+          aria-labelledby="nav-customer-tab"
+        >
+          <div id="layoutSidenav_content">
+            <button
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              <i class="fas fa-plus mr-2"></i> Create
+            </button>
+            <table class="table">
+              <thead class="thead-light text-center">
+                <tr>
+                  <th>Id</th>
+                  <th>Email</th>
+                  <th>Tên khách hàng</th>
+                  <th>SĐT</th>
+                  <th>Địa chỉ</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody class="text-center" id="customer_admin"></tbody>
+            </table>
+          </div>
+
+          <!-- Modal addCus-->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Thêm khách hàng
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="close"
+                  >
+                    <span aria-hidden="true">&times; </span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="" class="form-row">
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="account"
+                        placeholder="Account"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="fullname"
+                        placeholder="Name"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        placeholder="Email"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        placeholder="Phone"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        placeholder="Address"
+                      />
+                    </div>
+                  </form>
+                  <button
+                    href=""
+                    class="btn btn-outline-danger mt-3"
+                    onclick="addCustomer()"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Exit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal updateCustomer-->
+          <div
+            class="modal fade"
+            id="updateCustomer"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="updateCustomerLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="updateCustomerLabel">
+                    Chỉnh sửa thông tin khách hàng
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="close"
+                  >
+                    <span aria-hidden="true">&times; </span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form class="form-row">
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="idd"
+                        placeholder="Id"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="accountd"
+                        placeholder="Account"
+                      />
+                    </div>
+
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="fullnamed"
+                        placeholder="Fullname"
+                      />
+                    </div>
+
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="emaild"
+                        placeholder="Email"
+                      />
+                    </div>
+
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="phoned"
+                        placeholder="Phone"
+                      />
+                    </div>
+                    <div class="col-12 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressd"
+                        placeholder="Address"
+                      />
+                    </div>
+
+                    <div class="col-3 mt-3" id="summitUpdate"></div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Exit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ql don hang -->
+        <div
+          class="tab-pane fade"
+          id="nav-order"
+          role="tabpanel"
+          aria-labelledby="nav-order-tab"
+        >
+          ...
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
